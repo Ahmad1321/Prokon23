@@ -9,10 +9,24 @@ import {
   createTheme,
   StyledEngineProvider,
 } from "@mui/material";
-
+import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import createCache from "@emotion/cache";
+import { CacheProvider } from "@emotion/react";
 import "./global.css";
 
-const muiTheme = createTheme();
+const muiTheme = createTheme({
+  palette: {
+    background: { paper: "rgba(0,0,0,1)", default: "rgba(0,0,0,1)" },
+    mode: "light",
+  },
+});
+const chakraTheme = extendTheme({
+  styles: { global: { img: { maxWidth: "unset" } } },
+});
+const emotionCache = createCache({
+  key: "emotion-cache",
+  prepend: true,
+});
 
 const container = document.getElementById("root");
 const root = createRoot(container);
@@ -21,8 +35,12 @@ root.render(
   <BrowserRouter>
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={muiTheme}>
-        <CssBaseline />
-        <App />
+        <CacheProvider value={emotionCache}>
+          <ChakraProvider theme={chakraTheme}>
+            <CssBaseline />
+            <App />
+          </ChakraProvider>
+        </CacheProvider>
       </ThemeProvider>
     </StyledEngineProvider>
   </BrowserRouter>

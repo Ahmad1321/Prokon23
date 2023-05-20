@@ -4,11 +4,9 @@ import {
   useNavigationType,
   useLocation,
 } from "react-router-dom";
-import ForgotPassword2 from "./pages/ForgotPassword2";
-import ForgotPassword from "./pages/ForgotPassword";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import ProfileUser from "./pages/ProfileUser";
+import LandingPage from "./pages/LandingPage";
+import JadwalKonsultasi from "./pages/JadwalKonsultasi";
+import OurServices from "./pages/OurServices";
 import { useEffect } from "react";
 
 function App() {
@@ -31,15 +29,11 @@ function App() {
         title = "";
         metaDescription = "";
         break;
-      case "/forgot-password":
+      case "/jadwal-konsultasi":
         title = "";
         metaDescription = "";
         break;
-      case "/login":
-        title = "";
-        metaDescription = "";
-        break;
-      case "/register":
+      case "/our-services":
         title = "";
         metaDescription = "";
         break;
@@ -61,11 +55,9 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<ProfileUser />} />
-      <Route path="/forgot-password" element={<ForgotPassword />} />
-      <Route path="/forgot-password-2" element={<ForgotPassword2 />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/jadwal-konsultasi" element={<JadwalKonsultasi />} />
+      <Route path="/our-services" element={<OurServices />} />
     </Routes>
   );
 }
